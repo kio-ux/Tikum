@@ -26,7 +26,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private Boolean agree;
     private Button btn_signup;
     private TextView loginHere;
-//    private RadioGroup rg_gender;
+    private RadioGroup rb_group;
     private RadioButton radioButton;
 
     Vector<String> vectorUsername = new Vector<>();
@@ -44,14 +44,14 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         et_username = findViewById(R.id.et_username);
         et_email = findViewById(R.id.et_email);
         et_password = findViewById(R.id.et_password);
-//        rg_gender = findViewById(R.id.rg_gender);
+        rb_group =(RadioGroup) findViewById(R.id.rg_gender);
         btn_signup = findViewById(R.id.btn_signup);
         loginHere = findViewById(R.id.tv_login_here);
         cb_agree = findViewById(R.id.cb_agree);
 
         btn_signup.setOnClickListener(this);
         loginHere.setOnClickListener(this);
-
+// halo test 123
 
     }
 
@@ -63,10 +63,15 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             password = et_password.getText().toString();
             agree = cb_agree.isChecked();
 
+            int isSelected= rb_group.getCheckedRadioButtonId();
+
+
             if (username.isEmpty()) {
                 Toast.makeText(getApplicationContext(), "Username Must be Filled!", Toast.LENGTH_LONG).show();
             } else if (username.length() < 5 || username.length() > 20) {
                 Toast.makeText(getApplicationContext(), "Username must contains 5-20 characters", Toast.LENGTH_LONG).show();
+            }else if(isSelected==-1){
+                Toast.makeText(getApplicationContext(), "You Have not Selected any of the Gender", Toast.LENGTH_LONG).show();
             } else if (email.isEmpty()) {
                 Toast.makeText(getApplicationContext(), "Email Must be Filled!", Toast.LENGTH_LONG).show();
             } else if (!email.contains("@") || !email.contains(".")) {
